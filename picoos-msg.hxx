@@ -46,36 +46,8 @@ extern "C" {
 
 namespace pos {
 
-/**
- * xxxxxxx
- */
-  class ClassName
-  {
-  public:
-
-/* 
- * Constructors.
- */
-    inline ClassName()
-    {
-#ifdef _DBG
-      handle = (POSTASK_t)0;
-#endif
-    };
-
-    inline ClassName(const ClassName& other)
-    {
-      handle = other.handle;
-    };
-
-    inline ClassName(const POSTASK_t other)
-    {
-      handle = other;
-    };
-
 #if (DOX!=0) || (POSCFG_FEATURE_MSGBOXES != 0)
-/** @defgroup msg Message Box Functions
- * @ingroup userapip
+/**
  * Message boxes are a mechanism that is used for inter-process or,
  * in the case of pico]OS, inter-task communication. All tasks
  * can post messages to each other, and the receiving task will
@@ -87,18 +59,39 @@ namespace pos {
  * There are two possible types of message boxes: The simple type
  * can only hold a pointer to a user supplied buffer. The other
  * message box type can hold whole messages with different sizes.
- * A message buffer must be allocated with posMessageAlloc by the
+ * A message buffer must be allocated with ::posMessageAlloc by the
  * sending task, and the receiving task must free this buffer
  * again with ::posMessageFree. @n
  * To select the simple message box type, you have to set
  * the define ::POSCFG_MSG_MEMORY to 0. When you want to have the
  * full message buffer support, you must set ::POSCFG_MSG_MEMORY to 1.
- * @{
  */
+
+  class Message
+  {
+  public:
+/**
+ * Construct message when ::POSCFG_MSG_MEMORY is 1.
+ */
+#if (DOX!=0) || (POSCFG_MSG_MEMORY != 0)
+    inline Message()
+    {
+      msg = NULL;
+    };
+#endif
+
+#if (DOX!=0) || (POSCFG_MSG_MEMORY == 0)
+    /**
+     * Construct message when ::POSCFG_MSG_MEMORY is 0.
+     */
+    inline Message(void* buf)
+    {
+      msg = buf;
+    };
+#endif
 
 #if (DOX!=0) || (POSCFG_MSG_MEMORY != 0)
 /**
- * Message box function.
  * Allocates a new message buffer. The maximum buffer size is
  * set at compilation time by the define ::POSCFG_MSG_BUFSIZE.
  * Usually the sending task would allocate a new message buffer, fill
@@ -108,46 +101,47 @@ namespace pos {
  *          to have message box support compiled in.@n
  *          ::POSCFG_MSG_MEMORY must be defined to 1
  *          to have this function compiled in.
- * @sa      posMessageSend, posMessageGet, posMessageFree
+ * @sa      ::posMessageAlloc, send, get, free
  */
-    inline void* posMessageAlloc(void);
+    inline void* alloc()
+    {
+      msg = ::posMessageAlloc();
+      return msg;
+    }
 
 /**
- * Message box function.
  * Frees a message buffer again.
  * Usually the receiving task would call this function after
  * it has processed a message to free the message buffer again.
- * @param   buf  pointer to the message buffer that is no more used.
  * @note    ::POSCFG_FEATURE_MSGBOXES must be defined to 1 
  *          to have message box support compiled in.@n
  *          ::POSCFG_MSG_MEMORY must be defined to 1
  *          to have this function compiled in.
- * @sa      posMessageGet, posMessageSend, posMessageAlloc
+ * @sa      ::posMessageFree, get, send, alloc
  */
-    inline void posMessageFree(void *buf);
+    inline void free()
+    {
+      ::posMessageFree(msg);
+      msg = NULL;
+    }
 #endif
 
 /**
- * Message box function.
  * Sends a message to a task.
- * @param   buf  pointer to the message to send.
- *               If ::POSCFG_MSG_MEMORY is defined to 1,
- *               this pointer must point to the buffer
- *               that was allocated with ::posMessageAlloc.
- *               Note that this parameter must not be NULL.
- *               Exception: ::POSCFG_MSG_MEMORY = 0 and
- *               ::POSCFG_FEATURE_MSGWAIT = 0.
- * @param   taskhandle  handle to the task to send the message to.
+ * @param   taske  the task to send the message to.
  * @return  zero on success. When an error condition exist, a
  *          negative value is returned and the message buffer is freed.
  * @note    ::POSCFG_FEATURE_MSGBOXES must be defined to 1 
  *          to have message box support compiled in.
- * @sa      posMessageAlloc, posMessageGet
+ * @sa      ::posMessageSend, alloc, get
  */
-    inline VAR_t posMessageSend(void *buf, POSTASK_t taskhandle);
+    inline VAR_t send(const Task& task)
+    {
+      return ::posMessageSend(msg, task);
+    }
 
 /**
- * Message box function. Gets a new message from the message box.
+ * Gets a new message from the message box.
  * If no message is available, the task blocks until a new message
  * is received.
  * @return  pointer to the received message. Note that the
@@ -158,18 +152,16 @@ namespace pos {
  *          value for ::POSCFG_MAX_EVENTS in your poscfg.h .
  * @note    ::POSCFG_FEATURE_MSGBOXES must be defined to 1 
  *          to have message box support compiled in.
- * @sa      posMessageFree, posMessageAvailable,
- *          posMessageWait, posMessageSend
+ * @sa      ::posMessageGet, free, available,
+ *          wait, send
  */
-#if (DOX!=0) || (POSCFG_SMALLCODE == 0) || (POSCFG_FEATURE_MSGWAIT == 0)
-    inline void* posMessageGet(void);
-#else
-/* this define is for small code and it saves stack memory */
-#define     posMessageGet()  posMessageWait(INFINITE)
-#endif
+    inline void* get()
+    {
+      msg = ::posMessageGet();
+      return msg;
+    }
 
 /**
- * Message box function.
  * Tests if a new message is available
  * in the message box. This function can be used to prevent
  * the task from blocking.
@@ -178,13 +170,15 @@ namespace pos {
  *          is returned on error.
  * @note    ::POSCFG_FEATURE_MSGBOXES must be defined to 1 
  *          to have message box support compiled in.
- * @sa      posMessageGet, posMessageWait
+ * @sa      ::posMessageAvailable, get, wait
  */
-    inline VAR_t posMessageAvailable(void);
+    static inline VAR_t available()
+    {
+      return ::posMessageAvailable();
+    }
 
 #if (DOX!=0) || (POSCFG_FEATURE_MSGWAIT != 0)
 /**
- * Message box function.
  * Gets a new message from the message box.
  * If no message is available, the task blocks until a new message
  * is received or the timeout has been reached.
@@ -205,32 +199,30 @@ namespace pos {
  *          to have message box support compiled in.@n
  *          ::POSCFG_FEATURE_MSGWAIT must be defined to 1
  *          to have this function compiled in.
- * @sa      posMessageFree, posMessageGet, posMessageAvailable,
- *          posMessageSend, HZ, MS
+ * @sa      ::posMessageWait, free, get, available,
+ *          send, HZ, MS
  */
-    inline void* posMessageWait(UINT_t timeoutticks);
+    inline void* wait(UINT_t timeoutticks)
+    {
+      msg = ::posMessageWait(timeoutticks);
+      return msg;
+    }
 #endif
-
-#endif  /* POSCFG_FEATURE_MSGBOXES */
 
 /*
  * Assignment operators.
  */
-    inline Task& operator=(const Task& other)
+    inline Message& operator=(const Message& other)
     {
-      handle = other.handle;
-      return *this;
-    };
-
-    inline Task& operator=(const POSTASK_t other)
-    {
-      handle = handle;
+      msg = other.msg;
       return *this;
     };
 
   private:
-    POSTASK_t handle;
+    void* msg;
   };
+
+#endif  /* POSCFG_FEATURE_MSGBOXES */
 }
 
 #endif /* _PICOOS_MSG_HXX */

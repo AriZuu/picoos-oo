@@ -46,36 +46,8 @@ extern "C" {
 
 namespace pos {
 
-/**
- * xxxxxxx
- */
-  class ClassName
-  {
-  public:
-
-/* 
- * Constructors.
- */
-    inline ClassName()
-    {
-#ifdef _DBG
-      handle = (POSTASK_t)0;
-#endif
-    };
-
-    inline ClassName(const ClassName& other)
-    {
-      handle = other.handle;
-    };
-
-    inline ClassName(const POSTASK_t other)
-    {
-      handle = other;
-    };
-
 #if (DOX!=0) || (POSCFG_FEATURE_ATOMICVAR != 0)
-/** @defgroup atomic Atomic Variables
- * @ingroup userapip
+/**
  * Atomic variables are variables that can be accessed in an atomic manner,
  * that means a read-modify-write instruction is done in virtually one
  * single cycle. For example, the atomic access to a variable is necessary
@@ -85,79 +57,105 @@ namespace pos {
  * and modified the variable but has not yet written the result back) is
  * interrupted by a second task that also modifies the variable. Thus the
  * modification the first task has done would be lost. Atomic variables
- * prevent this possible race condition. @n@n
- * pico]OS supports four functions to operate on atomic variables:
- * ::posAtomicSet, ::posAtomicGet, ::posAtomicAdd and ::posAtomicSub.
- * @{
+ * prevent this possible race condition.
  */
+  class Atomic
+  {
+  public:
+
+/* 
+ * Constructors.
+ */
+    inline Atomic()
+    {
+    };
+
+    inline Atomic(const Atomic& other)
+    {
+      var = other.var;
+    };
+
+    inline Atomic(const POSATOMIC_t other)
+    {
+      var = other;
+    };
+
 /**
- * Atomic Variable Function.
  * Sets an atomic variable to the specified value.
  * @param   var    pointer to the atomic variable that shall be set.
  * @param   value  the value the atomic variable shall be set to.
  * @note    ::POSCFG_FEATURE_ATOMICVAR must be defined to 1 
  *          to have atomic variable support compiled in.
- * @sa      posAtomicGet, posAtomicAdd, posAtomicSub
+ * @sa      ::posAtomicSet, get, add, sub
  */
-    inline void posAtomicSet(POSATOMIC_t *var, INT_t value);
+    inline void set(INT_t value)
+    {
+      ::posAtomicSet(&var, value);
+    }
 
 /**
- * Atomic Variable Function.
  * Returns the current value of an atomic variable.
  * @param   var    pointer to the atomic variable which value
  *                 shall be read and returned.
  * @return  the value of the atomic variable.
  * @note    ::POSCFG_FEATURE_ATOMICVAR must be defined to 1 
  *          to have atomic variable support compiled in.
- * @sa      posAtomicSet, posAtomicAdd, posAtomicSub
+ * @sa      ::posAtomicGet, set, add, sub
  */
-    inline INT_t posAtomicGet(POSATOMIC_t *var);
+    inline INT_t get()
+    {
+      return ::posAtomicGet(&var);
+    }
 
 /**
- * Atomic Variable Function.
  * Adds a value onto the current value of the atomic variable.
  * @param   var    pointer to the atomic variable.
  * @param   value  value that shall be added to the atomic variable.
  * @return  the content of the atomic variable before it was incremented.
  * @note    ::POSCFG_FEATURE_ATOMICVAR must be defined to 1 
  *          to have atomic variable support compiled in.
- * @sa      posAtomicSet, posAtomicGet, posAtomicSub
+ * @sa      ::posAtomicAdd, set, get, sub
  */
-    inline INT_t posAtomicAdd(POSATOMIC_t *var, INT_t value);
+    inline INT_t add(INT_t value)
+    {
+      return ::posAtomicAdd(&var, value);
+    }
 
 /**
- * Atomic Variable Function.
  * Substracts a value from the current value of the atomic variable.
  * @param   var    pointer to the atomic variable.
  * @param   value  value that shall be substracted from the atomic variable.
  * @return  the content of the atomic variable before it was decremented.
  * @note    ::POSCFG_FEATURE_ATOMICVAR must be defined to 1 
  *          to have atomic variable support compiled in.
- * @sa      posAtomicSet, posAtomicGet, posAtomicAdd
+ * @sa      ::posAtomicSub, set, get, add
  */
-    inline INT_t posAtomicSub(POSATOMIC_t *var, INT_t value);
-
-#endif /* POSCFG_FEATURE_ATOMICVAR */
-/** @} */
+    inline INT_t sub(INT_t value)
+    {
+      return ::posAtomicSub(&var, value);
+    }
 
 /*
  * Assignment operators.
  */
-    inline Task& operator=(const Task& other)
+    inline Atomic& operator=(const Atomic& other)
     {
-      handle = other.handle;
+      var = other.var;
       return *this;
     };
 
-    inline Task& operator=(const POSTASK_t other)
+    inline Atomic& operator=(const POSATOMIC_t other)
     {
-      handle = handle;
+      var = var;
       return *this;
     };
 
   private:
-    POSTASK_t handle;
+    POSATOMIC_t var;
   };
+
+#endif /* POSCFG_FEATURE_ATOMICVAR */
+
 }
 
 #endif /* _PICOOS_ATOMIC_HXX */

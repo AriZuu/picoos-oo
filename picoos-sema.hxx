@@ -178,7 +178,7 @@ namespace pos {
  */
     inline VAR_t wait(UINT_t timeoutticks)
     {
-      return ::posSemaWait(timeoutticks);
+      return ::posSemaWait(handle, timeoutticks);
     };
 
 #endif
@@ -197,6 +197,11 @@ namespace pos {
       handle = handle;
       return *this;
     };
+
+    inline operator POSSEMA_t() const
+    {
+      return handle;
+    }
 
   private:
     POSSEMA_t handle;

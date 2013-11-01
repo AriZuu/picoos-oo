@@ -79,6 +79,13 @@ namespace nos {
 }
 
 #include <picoos-task.hxx>
+
+#include <picoos-atomic.hxx>
+#include <picoos-flag.hxx>
+#include <picoos-msg.hxx>
+#include <picoos-mutex.hxx>
 #include <picoos-sema.hxx>
+#include <picoos-softint.hxx>
+#include <picoos-timer.hxx>
 
 #endif /* _PICOOS_HXX */

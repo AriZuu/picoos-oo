@@ -46,73 +46,73 @@ extern "C" {
 
 namespace pos {
 
+#if (DOX!=0) || (POSCFG_FEATURE_FLAGS != 0)
 /**
- * xxxxxxx
+ * Flags are one-bit semaphores. They can be used to simulate events.
+ * A thread can simultaneousely wait for multiple flags to be set,
+ * so it is possible to post multiple events to this thread.
+ * The count of events a flag object can handle is only limited by the
+ * underlaying architecutre, the maximum count is defined as ::MVAR_BITS - 1.
  */
-  class ClassName
+  class Flag
   {
   public:
 
 /* 
  * Constructors.
  */
-    inline ClassName()
+    inline Flag()
     {
 #ifdef _DBG
       handle = (POSFLAG_t)0;
 #endif
     };
 
-    inline ClassName(const ClassName& other)
+    inline Flag(const Flag& other)
     {
       handle = other.handle;
     };
 
-    inline ClassName(const POSTASK_t other)
+    inline Flag(const POSFLAG_t other)
     {
       handle = other;
     };
 
-#if (DOX!=0) || (POSCFG_FEATURE_FLAGS != 0)
-/** @defgroup flag Flag Functions
- * @ingroup userapip
- * Flags are one-bit semaphores. They can be used to simulate events.
- * A thread can simultaneousely wait for multiple flags to be set,
- * so it is possible to post multiple events to this thread.
- * The count of events a flag object can handle is only limited by the
- * underlaying architecutre, the maximum count is defined as ::MVAR_BITS - 1.
- * @{
- */
 /**
- * Flag function.
  * Allocates a flag object. A flag object behaves like an array of
  * one bit semaphores. The object can hold up to ::MVAR_BITS - 1 flags.
  * The flags can be used to simulate events, so a single thread can wait
  * for several events simultaneously.
- * @return  handle to the new flag object. NULL is returned on error.
+ * @return  flag creation status. -1 is returned when the
+ *          flag could not be created.
  * @note    ::POSCFG_FEATURE_FLAGS must be defined to 1 
  *          to have flag support compiled in.
- * @sa      posFlagGet, posFlagSet, posFlagDestroy
+ * @sa      ::posFlagCreate, get, set, destroy
  */
-    inline POSFLAG_t posFlagCreate(void);
+    inline VAR_t create()
+    {
+      handle = ::posFlagCreate();
+      return (handle == NULL) ? -1 : 0;
+    }
 
 #if (DOX!=0) || (POSCFG_FEATURE_FLAGDESTROY != 0)
 /**
- * Flag function.
  * Frees an unused flag object again.
  * @param   flg  handle to the flag object.
  * @note    ::POSCFG_FEATURE_FLAGS must be defined to 1 
  *          to have flag support compiled in.@n
  *          ::POSCFG_FEATURE_FLAGDESTROY must be defined to 1
  *          to have this function compiled in.
- * @sa      posFlagCreate
+ * @sa      ::posFlagDestroy, create
  */
-    inline void posFlagDestroy(POSFLAG_t flg);
+    inline void destroy()
+    {
+      ::posFlagDestroy(handle);
+    }
 #endif
 
 /**
- * Flag function.
- * Sets a flag bit in the flag object and sets the task that
+ * Sets a flag bit in the flag object and sets the Flag that
  * pends on the flag object to running state.
  * @param   flg     handle to the flag object.
  * @param   flgnum  Number of the flag to set. The flag number
@@ -120,12 +120,14 @@ namespace pos {
  * @return  zero on success.
  * @note    ::POSCFG_FEATURE_FLAGS must be defined to 1 
  *          to have flag support compiled in.
- * @sa      posFlagCreate, posFlagGet, posFlagWait
+ * @sa      ::posFlagSet, create, get, wait
  */
-    inline VAR_t posFlagSet(POSFLAG_t flg, UVAR_t flgnum);
+    inline VAR_t set(UVAR_t flgnum)
+    {
+      return ::posFlagSet(handle, flgnum);
+    }
 
 /**
- * Flag function.
  * Pends on a flag object and waits until one of the flags 
  * in the flag object is set.
  * @param   flg   handle to the flag object.
@@ -136,13 +138,15 @@ namespace pos {
  *          returned. A negative value is returned on error.
  * @note    ::POSCFG_FEATURE_FLAGS must be defined to 1 
  *          to have flag support compiled in.
- * @sa      posFlagCreate, posFlagSet, posFlagWait
+ * @sa      ::posFlagGet, create, set, wait
  */
-    inline VAR_t posFlagGet(POSFLAG_t flg, UVAR_t mode);
+    inline VAR_t get(UVAR_t mode)
+    {
+      return ::posFlagGet(handle, mode);
+    }
 
 #if (DOX!=0) || (POSCFG_FEATURE_FLAGWAIT != 0)
 /**
- * Flag function.
  * Pends on a flag object and waits until one of the flags 
  * in the flag object is set or a timeout has happened.
  * @param   flg   handle to the flag object.
@@ -158,34 +162,34 @@ namespace pos {
  *          to have flag support compiled in.@n
  *          ::POSCFG_FEATURE_FLAGWAIT must be defined to 1
  *          to have this function compiled in.
- * @sa      posFlagCreate, posFlagSet, posFlagGet, HZ, MS
+ * @sa      ::posFlagWait, create, set, get, HZ, MS
  */
-    inline VAR_t posFlagWait(POSFLAG_t flg, UINT_t timeoutticks);
+    inline VAR_t wait(UINT_t timeoutticks)
+    {
+      return ::posFlagWait(handle, timeoutticks);
+    }
 #endif
-
-#define POSFLAG_MODE_GETSINGLE   0
-#define POSFLAG_MODE_GETMASK     1
-
-#endif  /* POSCFG_FEATURE_FLAGS */
 
 /*
  * Assignment operators.
  */
-    inline Task& operator=(const Task& other)
+    inline Flag& operator=(const Flag& other)
     {
       handle = other.handle;
       return *this;
     };
 
-    inline Task& operator=(const POSTASK_t other)
+    inline Flag& operator=(const POSFLAG_t other)
     {
       handle = handle;
       return *this;
     };
 
   private:
-    POSTASK_t handle;
+    POSFLAG_t handle;
   };
+
+#endif  /* POSCFG_FEATURE_FLAGS */
 }
 
 #endif /* _PICOOS_FLAG_HXX */

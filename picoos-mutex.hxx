@@ -46,36 +46,8 @@ extern "C" {
 
 namespace pos {
 
-/**
- * xxxxxxx
- */
-  class ClassName
-  {
-  public:
-
-/* 
- * Constructors.
- */
-    inline ClassName()
-    {
-#ifdef _DBG
-      handle = (POSTASK_t)0;
-#endif
-    };
-
-    inline ClassName(const ClassName& other)
-    {
-      handle = other.handle;
-    };
-
-    inline ClassName(const POSTASK_t other)
-    {
-      handle = other;
-    };
-
 #if (DOX!=0) || (POSCFG_FEATURE_MUTEXES != 0)
-/** @defgroup mutex Mutex Functions
- * @ingroup userapip
+/**
  * Mutexes are used for task synchronization. A source code
  * area that is protected by a mutex can only be executed by
  * one task at the time. The mechanism is comparable with
@@ -84,40 +56,65 @@ namespace pos {
  * task having the mutex locked can execute the mutex lock
  * functions again and again without being blocked
  * (this is called reentrancy).
- * @{
  */
+  class Mutex
+  {
+  public:
+
+/* 
+ * Constructors.
+ */
+    inline Mutex()
+    {
+#ifdef _DBG
+      handle = (POSMUTEX_t)0;
+#endif
+    };
+
+    inline Mutex(const Mutex& other)
+    {
+      handle = other.handle;
+    };
+
+    inline Mutex(const POSMUTEX_t other)
+    {
+      handle = other;
+    };
 
 /**
- * Mutex function.
  * Allocates a new mutex object.
- * @return  the pointer to the new mutex object. NULL is returned on error.
+ * @return  mutex creation status. -1 is returned when the
+ *          mutex could not be created.
  * @note    ::POSCFG_FEATURE_MUTEXES must be defined to 1 
  *          to have mutex support compiled in.
- * @sa      posMutexDestroy, posMutexLock, posMutexTryLock, posMutexUnlock
+ * @sa      ::posMutexCreate, destroy, lock, tryLock, unlock
  */
-    inline POSMUTEX_t posMutexCreate(void);
+    inline VAR_t create()
+    {
+      handle = ::posMutexCreate();
+      return (handle == NULL) ? -1 : 0;
+    }
 
 #if (DOX!=0) || (POSCFG_FEATURE_MUTEXDESTROY != 0)
 /**
- * Mutex function.
  * Frees a no more needed mutex object.
- * @param   mutex  handle to the mutex object.
  * @note    ::POSCFG_FEATURE_MUTEXES must be defined to 1 
  *          to have mutex support compiled in.@n
  *          ::POSCFG_FEATURE_MUTEXDESTROY must be defined to 1
  *          to have this function compiled in.
- * @sa      posMutexCreate
+ * @sa      ::posMutexDestroy, create
  */
-    inline void posMutexDestroy(POSMUTEX_t mutex);
+    inline void destroy()
+    {
+      ::posMutexDestroy(handle);
+    }
 #endif
 
 #if (DOX!=0) || (POSCFG_FEATURE_MUTEXTRYLOCK != 0)
 /**
- * Mutex function.
  * Tries to get the mutex lock. This function does not block when the
  * mutex is not available, instead it returns a value showing that
  * the mutex could not be locked.
- * @param   mutex  handle to the mutex object.
  * @return  zero when the mutex lock could be set. Otherwise, when
  *          the mutex lock is yet helt by an other task, the function
  *          returns 1. A negative value is returned on error.
@@ -125,57 +122,62 @@ namespace pos {
  *          to have mutex support compiled in.@n
  *          ::POSCFG_FEATURE_MUTEXTRYLOCK must be defined to 1
  *          to have this function compiled in.
- * @sa      posMutexLock, posMutexUnlock, posMutexCreate
+ * @sa      ::posMutexTryLock, lock, unlock, create
  */
-    inline VAR_t posMutexTryLock(POSMUTEX_t mutex);
+    inline VAR_t tryLock()
+    {
+      return ::posMutexTryLock(handle);
+    }
 #endif
 
 /**
- * Mutex function.
  * This function locks a code section so that only one task can execute
  * the code at a time. If an other task already has the lock, the task
  * requesting the lock will be blocked until the mutex is unlocked again.
  * Note that a ::posMutexLock appears always in a pair with ::posMutexUnlock.
- * @param   mutex  handle to the mutex object.
  * @return  zero on success.
  * @note    ::POSCFG_FEATURE_MUTEXES must be defined to 1 
  *          to have mutex support compiled in.
- * @sa      posMutexTryLock, posMutexUnlock, posMutexCreate
+ * @sa      ::posMutexLock, tryLock, unlock, create
  */
-    inline VAR_t posMutexLock(POSMUTEX_t mutex);
+    inline VAR_t lock()
+    {
+      return ::posMutexLock(handle);
+    }
 
 /**
- * Mutex function.
  * This function unlocks a section of code so that other tasks
  * are able to execute it.
- * @param   mutex  handle to the mutex object.
  * @return  zero on success.
  * @note    ::POSCFG_FEATURE_MUTEXES must be defined to 1 
  *          to have mutex support compiled in.
- * @sa      posMutexLock, posMutexTryLock, posMutexCreate
+ * @sa      ::posMutexUnlock, lock, tryLock, create
  */
-    inline VAR_t posMutexUnlock(POSMUTEX_t mutex);
-
-#endif /* POSCFG_FEATURE_MUTEXES */
+    inline VAR_t unlock()
+    {
+      return ::posMutexUnlock(handle);
+    }
 
 /*
  * Assignment operators.
  */
-    inline Task& operator=(const Task& other)
+    inline Mutex& operator=(const Mutex& other)
     {
       handle = other.handle;
       return *this;
     };
 
-    inline Task& operator=(const POSTASK_t other)
+    inline Mutex& operator=(const POSMUTEX_t other)
     {
       handle = handle;
       return *this;
     };
 
   private:
-    POSTASK_t handle;
+    POSMUTEX_t handle;
   };
+
+#endif /* POSCFG_FEATURE_MUTEXES */
 }
 
 #endif /* _PICOOS_MUTEX_HXX */

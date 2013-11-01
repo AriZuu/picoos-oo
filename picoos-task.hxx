@@ -454,6 +454,11 @@ namespace pos {
       return *this;
     };
 
+    inline operator POSTASK_t() const
+    {
+      return handle;
+    }
+
   private:
     POSTASK_t handle;
   };
