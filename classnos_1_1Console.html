@@ -66,6 +66,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a912a6babb1ebb7f1ea5790933bba8b10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a652d2b7a338830f71a88cd1decc14169"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnos_1_1Console.html#a652d2b7a338830f71a88cd1decc14169">print</a> (const char *s)</td></tr>
 <tr class="separator:a652d2b7a338830f71a88cd1decc14169"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0c9cb2e8fbc3892855422593a54524c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnos_1_1Console.html#ac0c9cb2e8fbc3892855422593a54524c">printf</a> (const char *fmt,...)</td></tr>
+<tr class="separator:ac0c9cb2e8fbc3892855422593a54524c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classnos_1_1Console.html">Console</a> input and output. Typically uses serial port. </p>
@@ -184,10 +186,54 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac0c9cb2e8fbc3892855422593a54524c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void nos::Console::printf </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Print a formated character string to the console or terminal. This function acts like the usual printf function, except that it is limmited to the basic formats. The largest integer that can be displayed is of type INT_t. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fmt</td><td>format string </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><a class="elRef" doxygen="picoos.tag:../picoos/" href="../picoos/group__cfgnoscio.html#gaccaa04595e0c219446a881a55c459b04">NOSCFG_FEATURE_CONOUT</a> and <a class="elRef" doxygen="picoos.tag:../picoos/" href="../picoos/group__cfgnoscio.html#gaf5207b42fb1412ff721b4f8b83987486">NOSCFG_FEATURE_PRINTF</a> must be defined to 1 to have this function compiled in.<br/>
+ This function is supported only if ::NOSCFG_FEATURE_USE_STDARG is defined to 1. </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classnos_1_1Console.html#a912a6babb1ebb7f1ea5790933bba8b10">printChar</a>, <a class="el" href="classnos_1_1Console.html#a652d2b7a338830f71a88cd1decc14169">print</a> </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 1 2013 10:58:19 for picoos-oo by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 1 2013 12:17:05 for picoos-oo by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
