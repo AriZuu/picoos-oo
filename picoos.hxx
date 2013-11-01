@@ -88,4 +88,10 @@ namespace nos {
 #include <picoos-softint.hxx>
 #include <picoos-timer.hxx>
 
+#if POSCFG_ENABLE_NANO != 0
+
+#include <picoos-console.hxx>
+
+#endif
+
 #endif /* _PICOOS_HXX */
