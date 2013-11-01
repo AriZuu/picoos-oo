@@ -139,6 +139,7 @@ namespace nos {
  */
     static void printf(const char *fmt, ...);
 #endif
+#endif
 
   };
 

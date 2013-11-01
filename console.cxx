@@ -36,11 +36,11 @@ namespace nos {
 
 #if (NOSCFG_FEATURE_PRINTF != 0 &&  NOSCFG_FEATURE_USE_STDARG != 0)
 
-  static void Console::printf(const char *fmt, ...)
+  void Console::printf(const char *fmt, ...)
   {
     va_list args;
 
-    args = va_start(fmt);
+    va_start(args, fmt);
     n_printFormattedN(fmt, args);
     va_end(args);
   }
