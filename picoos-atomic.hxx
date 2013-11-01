@@ -82,7 +82,6 @@ namespace pos {
 
 /**
  * Sets an atomic variable to the specified value.
- * @param   var    pointer to the atomic variable that shall be set.
  * @param   value  the value the atomic variable shall be set to.
  * @note    ::POSCFG_FEATURE_ATOMICVAR must be defined to 1 
  *          to have atomic variable support compiled in.
@@ -95,8 +94,6 @@ namespace pos {
 
 /**
  * Returns the current value of an atomic variable.
- * @param   var    pointer to the atomic variable which value
- *                 shall be read and returned.
  * @return  the value of the atomic variable.
  * @note    ::POSCFG_FEATURE_ATOMICVAR must be defined to 1 
  *          to have atomic variable support compiled in.
@@ -109,7 +106,6 @@ namespace pos {
 
 /**
  * Adds a value onto the current value of the atomic variable.
- * @param   var    pointer to the atomic variable.
  * @param   value  value that shall be added to the atomic variable.
  * @return  the content of the atomic variable before it was incremented.
  * @note    ::POSCFG_FEATURE_ATOMICVAR must be defined to 1 
@@ -123,7 +119,6 @@ namespace pos {
 
 /**
  * Substracts a value from the current value of the atomic variable.
- * @param   var    pointer to the atomic variable.
  * @param   value  value that shall be substracted from the atomic variable.
  * @return  the content of the atomic variable before it was decremented.
  * @note    ::POSCFG_FEATURE_ATOMICVAR must be defined to 1 

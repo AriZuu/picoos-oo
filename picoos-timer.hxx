@@ -96,7 +96,6 @@ namespace pos {
 
 /**
  * Sets up a timer object.
- * @param   tmr  handle to the timer object.
  * @param   sema seaphore object that shall be signaled when timer fires.
  * @param   waitticks  number of initial wait ticks. The timer fires the
  *                     first time when this ticks has been expired.

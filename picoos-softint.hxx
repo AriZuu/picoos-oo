@@ -56,9 +56,10 @@ namespace pos {
  * @n
  * Note that hardware interrupts, that do not call ::c_pos_intEnter and
  * ::c_pos_intExit, can't do calls to pico]OS functions, except to the
- * function ::posSoftInt.@n
+ * function ::pos::SoftInt::raise.@n
  * @n
- * All software interrupts, that are triggered by a call to ::posSoftInt,
+ * All software interrupts, that are triggered by a
+ * call to ::pos::SoftInt::raise,
  * are chained into a global list. This list is then executed as soon
  * as possible, but at least when the pico]OS scheduler is called
  * (that is, for example, when a time slice has expired or a task
@@ -67,7 +68,7 @@ namespace pos {
  * A software interrupt runs at interrupt level, that means with
  * interrupts disabled (pico]OS calls ::POS_SCHED_LOCK before executing
  * the software interrupt handler). The execution of software interrupt
- * handlers can not be inhibited by setting the ::posTaskSchedLock flag.
+ * handlers can not be inhibited by setting the ::pos::Task::schedLock flag.
  * @n
  * Note that software interrupts need additional space on the
  * processors call stack. Make sure to have space for at least

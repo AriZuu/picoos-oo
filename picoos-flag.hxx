@@ -98,7 +98,6 @@ namespace pos {
 #if (DOX!=0) || (POSCFG_FEATURE_FLAGDESTROY != 0)
 /**
  * Frees an unused flag object again.
- * @param   flg  handle to the flag object.
  * @note    ::POSCFG_FEATURE_FLAGS must be defined to 1 
  *          to have flag support compiled in.@n
  *          ::POSCFG_FEATURE_FLAGDESTROY must be defined to 1
@@ -114,7 +113,6 @@ namespace pos {
 /**
  * Sets a flag bit in the flag object and sets the Flag that
  * pends on the flag object to running state.
- * @param   flg     handle to the flag object.
  * @param   flgnum  Number of the flag to set. The flag number
  *                  must be in the range of 0 .. ::MVAR_BITS - 2.
  * @return  zero on success.
@@ -130,7 +128,6 @@ namespace pos {
 /**
  * Pends on a flag object and waits until one of the flags 
  * in the flag object is set.
- * @param   flg   handle to the flag object.
  * @param   mode  can be POSFLAG_MODE_GETSINGLE or POSFLAG_MODE_GETMASK.
  * @return  the number of the next flag that is set when mode is set
  *          to POSFLAG_MODE_GETSINGLE. When mode is set to 
@@ -149,7 +146,6 @@ namespace pos {
 /**
  * Pends on a flag object and waits until one of the flags 
  * in the flag object is set or a timeout has happened.
- * @param   flg   handle to the flag object.
  * @param   timeoutticks  timeout in timer ticks
  *          (see ::HZ define and ::MS macro).
  *          If this parameter is set to zero, the function immediately

@@ -59,9 +59,9 @@ namespace pos {
  * There are two possible types of message boxes: The simple type
  * can only hold a pointer to a user supplied buffer. The other
  * message box type can hold whole messages with different sizes.
- * A message buffer must be allocated with ::posMessageAlloc by the
+ * A message buffer must be allocated with ::pos::Message::alloc by the
  * sending task, and the receiving task must free this buffer
- * again with ::posMessageFree. @n
+ * again with ::pos::Message::free. @n
  * To select the simple message box type, you have to set
  * the define ::POSCFG_MSG_MEMORY to 0. When you want to have the
  * full message buffer support, you must set ::POSCFG_MSG_MEMORY to 1.
@@ -128,7 +128,7 @@ namespace pos {
 
 /**
  * Sends a message to a task.
- * @param   taske  the task to send the message to.
+ * @param   task  the task to send the message to.
  * @return  zero on success. When an error condition exist, a
  *          negative value is returned and the message buffer is freed.
  * @note    ::POSCFG_FEATURE_MSGBOXES must be defined to 1 
