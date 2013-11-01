@@ -7,3 +7,7 @@ Class names correspond to functionality groups available in
 C-api, ie. posTaskCreate becomes method called "create" in class "Task" 
 in namespace "pos".
 
+For more info, see [this blog entry][1] or [manual][2].
+
+[1]: http://stonepile.fi/object-oriented-approach-to-embedded-programming-with-c/
+[2]: http://arizuu.github.io/picoos-oo
