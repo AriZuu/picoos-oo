@@ -38,7 +38,7 @@ BUILD ?= RELEASE
 include $(RELROOT)make/common.mak
 
 TARGET = picoos-oo
-SRC_TXT =	
+SRC_TXT = console.cxx	
 SRC_HDR = 	
 SRC_OBJ =
 CDEFINES +=

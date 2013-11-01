@@ -123,6 +123,21 @@ namespace nos {
       ::nosPrint(s);
     }
 
+#if DOX!=0 || (NOSCFG_FEATURE_PRINTF != 0 &&  NOSCFG_FEATURE_USE_STDARG != 0)
+/**
+ * Print a formated character string to the console or terminal.
+ * This function acts like the usual printf function, except that
+ * it is limmited to the basic formats. The largest integer that
+ * can be displayed is of type INT_t.
+ * @param   fmt  format string
+ * @note    ::NOSCFG_FEATURE_CONOUT and ::NOSCFG_FEATURE_PRINTF 
+ *          must be defined to 1
+ *          to have this function compiled in.@n
+ *          This function is supported  only if ::NOSCFG_FEATURE_USE_STDARG 
+ *          is defined to 1.
+ * @sa      printChar, print
+ */
+    static void printf(const char *fmt, ...);
 #endif
 
   };
