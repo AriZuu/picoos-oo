@@ -529,6 +529,8 @@ namespace nos {
       handle = ::nosTaskCreate(funcptr, funcarg, priority, stacksize, name);
       return (handle == NULL) ? -1 : 0;
     };
+#endif
+
   };
 }
 
