@@ -459,9 +459,78 @@ namespace pos {
       return handle;
     }
 
+  protected:
+    inline void setHandle(POSTASK_t h)
+    {
+       handle = h;
+    };
+
   private:
     POSTASK_t handle;
   };
 }
 
+#if POSCFG_ENABLE_NANO != 0
+
+namespace nos {
+
+/**
+ * Task Control
+ */
+  class Task : public pos::Task
+  {
+  public:
+
+/* 
+ * Constructors.
+ */
+    inline Task()
+    {
+    };
+
+    inline Task(const Task& other) : pos::Task(other)
+    {
+    };
+
+    inline Task(const POSTASK_t other) : pos::Task(other)
+    {
+    };
+
+#if (DOX!=0) || (NOSCFG_FEATURE_TASKCREATE != 0)
+/**
+ * Creates a new task.
+ * @param   funcptr    pointer to the function that shall be executed
+ *                     by the new task.
+ * @param   funcarg    optional argument passed to function funcptr.
+ * @param   priority   task priority. Must be in the range
+ *                     0 .. ::POSCFG_MAX_PRIO_LEVEL - 1.
+ *                     The higher the number, the higher the priority.
+ * @param   stacksize  Size of the stack memory. If set to zero,
+ *                     a default stack size is assumed
+ *                     (see define ::NOSCFG_DEFAULT_STACKSIZE).
+ * @param   name       Name of the new task to create. If the last character
+ *                     in the name is an asteriks (*), the operating system
+ *                     automatically assigns the task a unique name (the
+ *                     registry feature must be enabled for this automatism).
+ *                     This parameter can be NULL if the nano layer registry
+ *                     feature is not used and will not be used in future.
+ * @return  task creation status. -1 is returned when the
+ *          task could not be created.
+ * @note    ::NOSCFG_FEATURE_TASKCREATE must be defined to 1
+ *          to have this function compiled in.
+ * @sa      nosTaskExit
+ */
+    inline VAR_t create(POSTASKFUNC_t funcptr,
+                        void *funcarg,
+                        VAR_t priority,
+                        UINT_t stacksize,
+                        const char* name)
+    {
+      handle = ::nosTaskCreate(funcptr, funcarg, priority, stacksize, name);
+      return (handle == NULL) ? -1 : 0;
+    };
+  };
+}
+
+#endif /* POSCFG_ENABLE_NANO */
 #endif /* _PICOOS_TASK_HXX */
