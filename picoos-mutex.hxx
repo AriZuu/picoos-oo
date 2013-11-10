@@ -44,9 +44,10 @@ extern "C" {
 
 }
 
+#if (DOX!=0) || (POSCFG_FEATURE_MUTEXES != 0)
+
 namespace pos {
 
-#if (DOX!=0) || (POSCFG_FEATURE_MUTEXES != 0)
 /**
  * Mutexes are used for task synchronization. A source code
  * area that is protected by a mutex can only be executed by
@@ -173,11 +174,92 @@ namespace pos {
       return *this;
     };
 
-  private:
+  protected:
     POSMUTEX_t handle;
   };
-
-#endif /* POSCFG_FEATURE_MUTEXES */
 }
 
+#if POSCFG_ENABLE_NANO != 0
+
+namespace nos {
+
+/**
+ * Mutex functions.
+ */
+  class Mutex : public pos::Mutex
+  {
+  public:
+
+/*
+ * Constructors.
+ */
+    inline Mutex()
+    {
+    };
+
+    inline Mutex(const Mutex& other) : pos::Mutex(other)
+    {
+    };
+
+    inline Mutex(const POSMUTEX_t other) : pos::Mutex(other)
+    {
+    };
+
+#if DOX!=0 || NOSCFG_FEATURE_MUTEXES != 0
+/**
+ * Allocates a new mutex object.
+ * @param   options   Currently unused. Please set this parameter to 0 (zero).
+ * @param   name      Name of the new mutex object to create. If the last
+ *                    character in the name is an asteriks (*), the operating
+ *                    system automatically assigns the mutex a unique
+ *                    name (the registry feature must be enabled for this
+ *                    automatism). This parameter can be NULL if the nano
+ *                    layer registry feature is not used and will not
+ *                    be used in future.
+ * @return  mutex creation status. -1 is returned when the
+ *          mutex could not be created.
+ * @note    ::NOSCFG_FEATURE_MUTEXES must be defined to 1
+ *          to have mutex support compiled in. @n
+ *          Even if the function posMutexDestroy would work also, it is
+ *          required to call ::nosMutexDestroy. Only this function removes
+ *          the mutex from the registry. @n
+ *          Dependent of your configuration, this function can
+ *          be defined as macro to decrease code size.
+ * @sa      nosMutexDestroy, nosMutexLock, nosMutexTryLock, nosMutexUnlock
+ */
+    inline VAR_t create(UVAR_t options, const char *name)
+    {
+      handle = nosMutexCreate(options, name);
+      return (handle == NULL) ? -1 : 0;
+    };
+
+    using pos::Mutex::create;
+
+#if DOX!=0 || POSCFG_FEATURE_MUTEXDESTROY != 0
+/**
+ * Mutex function.
+ * Frees a no more needed mutex object.
+ * @param   mutex  handle to the mutex object.
+ * @note    ::NOSCFG_FEATURE_MUTEXES must be defined to 1
+ *          to have mutex support compiled in.@n
+ *          ::POSCFG_FEATURE_MUTEXDESTROY must be defined to 1
+ *          to have this function compiled in.@n
+ *          Dependent of your configuration, this function can
+ *          be defined as macro to decrease code size.
+ * @sa      nosMutexCreate
+ */
+    inline void destroy()
+    {
+      nosMutexDestroy(handle);
+      handle = (POSMUTEX_t)0;
+    }
+
+#endif
+#endif /* NOSCFG_FEATURE_MUTEXES */
+
+  };
+}
+
+#endif /* POSCFG_ENABLE_NANO */
+#endif /* POSCFG_FEATURE_MUTEXES */
 #endif /* _PICOOS_MUTEX_HXX */
