@@ -285,7 +285,7 @@ namespace nos {
  */
     inline void destroy()
     {
-      ::nosSemaDestroy(handle);
+      nosSemaDestroy(handle);
       handle = (POSSEMA_t)0;
     }
 
