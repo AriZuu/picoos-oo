@@ -46,7 +46,7 @@ extern "C" {
 
 namespace pos {
 
-#if (DOX!=0) || (SYS_FEATURE_EVENTS != 0)
+#if (DOX!=0) || (POSCFG_FEATURE_SEMAPHORES != 0)
 /**
  * Semaphores are basically used for task synchronization.
  * Task synchronization means that only a defined number of tasks can
@@ -112,7 +112,7 @@ namespace pos {
       return (handle == NULL) ? -1 : 0;
     };
 
-#if (DOX!=0) || (SYS_FEATURE_EVENTFREE != 0)
+#if (DOX!=0) || (POSCFG_FEATURE_SEMADESTROY != 0)
 /**
  * Frees a no more needed semaphore object.
  * @note    ::POSCFG_FEATURE_SEMAPHORES must be defined to 1 
@@ -203,11 +203,97 @@ namespace pos {
       return handle;
     }
 
-  private:
+  protected:
     POSSEMA_t handle;
   };
 
-#endif /* SYS_FEATURE_EVENTS */
+#endif /* POSCFG_FEATURE_SEMAPHORES  */
 }
 
+#if POSCFG_ENABLE_NANO != 0
+
+namespace nos {
+
+/**
+ * Semaphore functions.
+ */
+  class Sema : public pos::Sema
+  {
+  public:
+
+/*
+ * Constructors.
+ */
+    inline Sema()
+    {
+    };
+
+    inline Sema(const Sema& other) : pos::Sema(other)
+    {
+    };
+
+    inline Sema(const POSSEMA_t other) : pos::Sema(other)
+    {
+    };
+
+#if DOX!=0 || NOSCFG_FEATURE_SEMAPHORES != 0
+/**
+ * Allocates a new semaphore object.
+ * @param   initcount Initial semaphore count (see detailed semaphore
+ *                    description in pico laye documentation).
+ * @param   options   Currently unused. Please set this parameter to 0 (zero).
+ * @param   name      Name of the new semaphore object to create. If the last
+ *                    character in the name is an asteriks (*), the operating
+ *                    system automatically assigns the semaphore a unique
+ *                    name (the registry feature must be enabled for this
+ *                    automatism). This parameter can be NULL if the nano
+ *                    layer registry feature is not used and will not be
+ *                    used in future.
+ * @return  semaphore creation status. -1 is returned when the
+ *          semaphore could not be created.
+ * @note    ::NOSCFG_FEATURE_SEMAPHORES must be defined to 1
+ *          to have semaphore support compiled in. @n
+ *          You must use ::nosSemaDestroy to destroy the semaphore again.@n
+ *          Even if the function posSemaDestroy would work also, it is
+ *          required to call ::nosSemaDestroy. Only this function removes
+ *          the semaphore from the registry. @n
+ *          Dependent of your configuration, this function can
+ *          be defined as macro to decrease code size.
+ * @sa      nosSemaDestroy, nosSemaGet, nosSemaWait, nosSemaSignal
+ */
+
+    inline VAR_t create(INT_t initcount, UVAR_t options,
+                        const char *name)
+    {
+      handle = nosSemaCreate(initcount, options, name);
+      return (handle == NULL) ? -1 : 0;
+    };
+
+    using pos::Sema::create;
+
+#if DOX!=0 || POSCFG_FEATURE_SEMADESTROY != 0
+/**
+ * Frees a no more needed semaphore object.
+ * @param   sema  handle to the semaphore object.
+ * @note    ::NOSCFG_FEATURE_SEMAPHORES must be defined to 1
+ *          to have semaphore support compiled in.@n
+ *          ::POSCFG_FEATURE_SEMADESTROY must be defined to 1
+ *          to have this function compiled in. @n
+ *          Dependent of your configuration, this function can
+ *          be defined as macro to decrease code size.
+ * @sa      nosSemaCreate
+ */
+    inline void destroy()
+    {
+      ::nosSemaDestroy(handle);
+      handle = (POSSEMA_t)0;
+    }
+
+#endif
+#endif /* NOSCFG_FEATURE_SEMAPHORES */
+
+  };
+}
+
+#endif /* POSCFG_ENABLE_NANO */
 #endif /* _PICOOS_SEMA_HXX */

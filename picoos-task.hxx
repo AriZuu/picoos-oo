@@ -460,12 +460,6 @@ namespace pos {
     }
 
   protected:
-    inline void setHandle(POSTASK_t h)
-    {
-       handle = h;
-    };
-
-  private:
     POSTASK_t handle;
   };
 }
@@ -529,6 +523,9 @@ namespace nos {
       handle = ::nosTaskCreate(funcptr, funcarg, priority, stacksize, name);
       return (handle == NULL) ? -1 : 0;
     };
+
+    using pos::Task::create;
+
 #endif
 
   };
