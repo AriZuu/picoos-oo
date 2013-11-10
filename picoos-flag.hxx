@@ -188,4 +188,88 @@ namespace pos {
 #endif  /* POSCFG_FEATURE_FLAGS */
 }
 
+#if POSCFG_ENABLE_NANO != 0
+
+namespace nos {
+
+/**
+ * Flag functions.
+ */
+  class Flag : public pos::Flag
+  {
+  public:
+
+/*
+ * Constructors.
+ */
+    inline Flag()
+    {
+    };
+
+    inline Flag(const Flag& other) : pos::Flag(other)
+    {
+    };
+
+    inline Flag(const POSFLAG_t other) : pos::Flag(other)
+    {
+    };
+
+#if DOX!=0 || NOSCFG_FEATURE_FLAGS != 0
+/**
+ * Allocates a flag object. A flag object behaves like an array of
+ * one bit semaphores. The object can hold up to ::MVAR_BITS - 1 flags.
+ * The flags can be used to simulate events, so a single thread can wait
+ * for several events simultaneously.
+ * @param   name      Name of the new flag object to create. If the last
+ *                    character in the name is an asteriks (*), the operating
+ *                    system automatically assigns the flag an unique name.
+ *                    name (the registry feature must be enabled for this
+ *                    automatism). This parameter can be NULL if the nano
+ *                    layer registry feature is not used and will not be
+ *                    used in future.
+ * @return  semaphore creation status. -1 is returned when the
+ *          semaphore could not be created.
+ * @note    ::NOSCFG_FEATURE_FLAGS must be defined to 1
+ *          to have flag support compiled in. @n
+ *          You must use ::nosFlagDestroy to destroy the flag object again.@n
+ *          Even if the function posFlagDestroy would work also, it is
+ *          required to call ::nosFlagDestroy. Only this function removes
+ *          the flag object from the registry. @n
+ *          Dependent of your configuration, this function can
+ *          be defined as macro to decrease code size.
+ * @sa      nosFlagGet, nosFlagSet, nosFlagDestroy
+ */
+    inline VAR_t create(const char *name)
+    {
+      handle = nosFlagCreate(name);
+      return (handle == NULL) ? -1 : 0;
+    };
+
+    using pos::Flag::create;
+
+#if DOX!=0 || POSCFG_FEATURE_FLAGDESTROY != 0
+/**
+ * Frees an unused flag object again.
+ * @param   flg  handle to the flag object.
+ * @note    ::NOSCFG_FEATURE_FLAGS must be defined to 1
+ *          to have flag support compiled in.@n
+ *          ::POSCFG_FEATURE_FLAGDESTROY must be defined to 1
+ *          to have this function compiled in.@n
+ *          Dependent of your configuration, this function can
+ *          be defined as macro to decrease code size.
+ * @sa      nosFlagCreate
+ */
+    inline void destroy()
+    {
+      nosFlagDestroy(handle);
+      handle = (POSFLAG_t)0;
+    }
+
+#endif
+#endif /* NOSCFG_FEATURE_FLAGS */
+
+  };
+}
+
+#endif /* POSCFG_ENABLE_NANO */
 #endif /* _PICOOS_FLAG_HXX */
