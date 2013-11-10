@@ -464,7 +464,7 @@ namespace pos {
   };
 }
 
-#if POSCFG_ENABLE_NANO != 0
+#if (DOX!=0) || POSCFG_ENABLE_NANO != 0
 
 namespace nos {
 
@@ -512,7 +512,7 @@ namespace nos {
  *          task could not be created.
  * @note    ::NOSCFG_FEATURE_TASKCREATE must be defined to 1
  *          to have this function compiled in.
- * @sa      nosTaskExit
+ * @sa      ::nosTaskCreate, exit
  */
     inline VAR_t create(POSTASKFUNC_t funcptr,
                         void *funcarg,
