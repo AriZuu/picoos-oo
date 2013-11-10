@@ -86,89 +86,126 @@
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">namespace </span>pos {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#if (DOX!=0) || (POSCFG_FEATURE_MSGBOXES != 0)</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html">   70</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classpos_1_1Message.html">Message</a></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#if (DOX!=0) || (POSCFG_MSG_MEMORY != 0)</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html#afeffc31adabb690f4165a3b3e0c6c65b">   77</a></span>&#160;<span class="preprocessor"></span>    <span class="keyword">inline</span> <a class="code" href="classpos_1_1Message.html#afeffc31adabb690f4165a3b3e0c6c65b">Message</a>()</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#if (DOX!=0) || (POSCFG_FEATURE_MSGBOXES != 0)</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">namespace </span>pos {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html">   71</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classpos_1_1Message.html">Message</a></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html#afeffc31adabb690f4165a3b3e0c6c65b">   77</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="classpos_1_1Message.html#afeffc31adabb690f4165a3b3e0c6c65b">Message</a>()</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    {</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      msg = NULL;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    };</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#if (DOX!=0) || (POSCFG_MSG_MEMORY == 0)</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html#a207cab898890f2a25e8cfa560d4c7cbf">   87</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="classpos_1_1Message.html#afeffc31adabb690f4165a3b3e0c6c65b">Message</a>(<span class="keywordtype">void</span>* buf)</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      msg = buf;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    };</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#if (DOX!=0) || (POSCFG_MSG_MEMORY != 0)</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00106"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html#a5a017292a3ffcf6dc521355675977fde">  106</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span>* <a class="code" href="classpos_1_1Message.html#a5a017292a3ffcf6dc521355675977fde">alloc</a>()</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    {</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      msg = ::posMessageAlloc();</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;      <span class="keywordflow">return</span> msg;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00122"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html#a0e4b8de89f4f4c794cb739d80cb0d3f8">  122</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classpos_1_1Message.html#a0e4b8de89f4f4c794cb739d80cb0d3f8">free</a>()</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    {</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;      ::posMessageFree(msg);</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;      msg = NULL;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    }</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00138"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html#ab6abb547d890be5ccfbb26c0d1cfd62a">  138</a></span>&#160;    <span class="keyword">inline</span> <a class="codeRef" doxygen="picoos.tag:../picoos/" href="../picoos/picoos_8h.html#acd71b9176e3754a87ca57fc06931e0de">VAR_t</a> <a class="code" href="classpos_1_1Message.html#ab6abb547d890be5ccfbb26c0d1cfd62a">send</a>(<span class="keyword">const</span> <a class="code" href="classpos_1_1Task.html">Task</a>&amp; task)</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    {</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;      return ::posMessageSend(msg, task);</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    }</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
-<div class="line"><a name="l00158"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html#a8e76d03f9ac1cb8e4ffaec64267941b7">  158</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span>* <span class="keyword">get</span>()</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    {</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;      msg = ::posMessageGet();</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;      <span class="keywordflow">return</span> msg;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    }</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
-<div class="line"><a name="l00175"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html#a92cf87243e6a8980b04892b658d211af">  175</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <a class="codeRef" doxygen="picoos.tag:../picoos/" href="../picoos/picoos_8h.html#acd71b9176e3754a87ca57fc06931e0de">VAR_t</a> <a class="code" href="classpos_1_1Message.html#a92cf87243e6a8980b04892b658d211af">available</a>()</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    {</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;      return ::posMessageAvailable();</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    }</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="preprocessor">#if (DOX!=0) || (POSCFG_FEATURE_MSGWAIT != 0)</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00205"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html#a6d3806c477ea03328b6675481f175e1b">  205</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span>* <a class="code" href="classpos_1_1Message.html#a6d3806c477ea03328b6675481f175e1b">wait</a>(<a class="codeRef" doxygen="picoos.tag:../picoos/" href="../picoos/picoos_8h.html#a17133269bf6f77fd6b3523d894076dbe">UINT_t</a> timeoutticks)</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    {</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;      msg = ::posMessageWait(timeoutticks);</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;      <span class="keywordflow">return</span> msg;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    }</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="comment"> * Assignment operators.</span></div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="keyword">inline</span> <a class="code" href="classpos_1_1Message.html">Message</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classpos_1_1Message.html">Message</a>&amp; other)</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    {</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;      msg = other.msg;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    };</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keywordtype">void</span>* msg;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;  };</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#if (DOX!=0) || (POSCFG_MSG_MEMORY == 0)</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html#a207cab898890f2a25e8cfa560d4c7cbf">   86</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="classpos_1_1Message.html#afeffc31adabb690f4165a3b3e0c6c65b">Message</a>(<span class="keywordtype">void</span>* buf)</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      msg = buf;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    };</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#if (DOX!=0) || (POSCFG_MSG_MEMORY != 0)</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html#a5a017292a3ffcf6dc521355675977fde">  105</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span>* <a class="code" href="classpos_1_1Message.html#a5a017292a3ffcf6dc521355675977fde">alloc</a>()</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    {</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;      msg = ::posMessageAlloc();</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      <span class="keywordflow">return</span> msg;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html#a0e4b8de89f4f4c794cb739d80cb0d3f8">  121</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classpos_1_1Message.html#a0e4b8de89f4f4c794cb739d80cb0d3f8">free</a>()</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;      ::posMessageFree(msg);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;      msg = NULL;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    }</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html#ab6abb547d890be5ccfbb26c0d1cfd62a">  137</a></span>&#160;    <span class="keyword">inline</span> <a class="codeRef" doxygen="picoos.tag:../picoos/" href="../picoos/picoos_8h.html#acd71b9176e3754a87ca57fc06931e0de">VAR_t</a> <a class="code" href="classpos_1_1Message.html#ab6abb547d890be5ccfbb26c0d1cfd62a">send</a>(<span class="keyword">const</span> <a class="code" href="classpos_1_1Task.html">Task</a>&amp; task)</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    {</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;      return ::posMessageSend(msg, task);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    }</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html#a8e76d03f9ac1cb8e4ffaec64267941b7">  157</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span>* <span class="keyword">get</span>()</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    {</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;      msg = ::posMessageGet();</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;      <span class="keywordflow">return</span> msg;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    }</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
+<div class="line"><a name="l00174"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html#a92cf87243e6a8980b04892b658d211af">  174</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <a class="codeRef" doxygen="picoos.tag:../picoos/" href="../picoos/picoos_8h.html#acd71b9176e3754a87ca57fc06931e0de">VAR_t</a> <a class="code" href="classpos_1_1Message.html#a92cf87243e6a8980b04892b658d211af">available</a>()</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    {</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;      return ::posMessageAvailable();</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    }</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor">#if (DOX!=0) || (POSCFG_FEATURE_MSGWAIT != 0)</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00204"></a><span class="lineno"><a class="code" href="classpos_1_1Message.html#a6d3806c477ea03328b6675481f175e1b">  204</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span>* <a class="code" href="classpos_1_1Message.html#a6d3806c477ea03328b6675481f175e1b">wait</a>(<a class="codeRef" doxygen="picoos.tag:../picoos/" href="../picoos/picoos_8h.html#a17133269bf6f77fd6b3523d894076dbe">UINT_t</a> timeoutticks)</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    {</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;      msg = ::posMessageWait(timeoutticks);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;      <span class="keywordflow">return</span> msg;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    }</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment"> * Assignment operators.</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keyword">inline</span> <a class="code" href="classpos_1_1Message.html">Message</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="classpos_1_1Message.html">Message</a>&amp; other)</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    {</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;      msg = other.msg;</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    };</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keywordtype">void</span>* msg;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;  };</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;}</div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* POSCFG_FEATURE_MSGBOXES */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _PICOOS_MSG_HXX */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="preprocessor">#if DOX!=0 || POSCFG_ENABLE_NANO != 0</span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="keyword">namespace </span>nos {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;</div>
+<div class="line"><a name="l00232"></a><span class="lineno"><a class="code" href="classnos_1_1Message.html">  232</a></span>&#160;  <span class="keyword">class </span><a class="code" href="classnos_1_1Message.html">Message</a> : <span class="keyword">public</span> <a class="code" href="classpos_1_1Message.html">pos::Message</a></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;  {</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment"> * Constructors.</span></div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keyword">inline</span> <a class="code" href="classnos_1_1Message.html">Message</a>()</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    {</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    };</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="preprocessor">#if DOX!=0 || NOSCFG_FEATURE_MSGBOXES != 0</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00265"></a><span class="lineno"><a class="code" href="classnos_1_1Message.html#a89dc680d7204fa9be350617c3c76525c">  265</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span>* <a class="code" href="classpos_1_1Message.html#a5a017292a3ffcf6dc521355675977fde">alloc</a>(<a class="codeRef" doxygen="picoos.tag:../picoos/" href="../picoos/picoos_8h.html#a17133269bf6f77fd6b3523d894076dbe">UINT_t</a> msgSize)</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    {</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;      msg = <a class="codeRef" doxygen="picoos.tag:../picoos/" href="../picoos/group__nanomsg.html#ga949d5ee48b76ba497c90f2774b926ae1">nosMessageAlloc</a>(msgSize);</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;      <span class="keywordflow">return</span> msg;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    }</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;</div>
+<div class="line"><a name="l00279"></a><span class="lineno"><a class="code" href="classnos_1_1Message.html#ae43e4b8eb4707b59592374aee684ccbd">  279</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classnos_1_1Message.html#ae43e4b8eb4707b59592374aee684ccbd">free</a>()</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    {</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;      <a class="codeRef" doxygen="picoos.tag:../picoos/" href="../picoos/group__nanomsg.html#ga32668ddc8013a1db2c7996f53215ef15">nosMessageFree</a>(msg);</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;      msg = NULL;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    }</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
+<div class="line"><a name="l00294"></a><span class="lineno"><a class="code" href="classnos_1_1Message.html#af70fdb1a755dc0922276bbe020972bcc">  294</a></span>&#160;    <span class="keyword">inline</span> <a class="codeRef" doxygen="picoos.tag:../picoos/" href="../picoos/picoos_8h.html#acd71b9176e3754a87ca57fc06931e0de">VAR_t</a> <a class="code" href="classnos_1_1Message.html#af70fdb1a755dc0922276bbe020972bcc">send</a>(<span class="keyword">const</span> <a class="code" href="classnos_1_1Task.html">Task</a>&amp; task)</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    {</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;      <span class="keywordflow">return</span> <a class="codeRef" doxygen="picoos.tag:../picoos/" href="../picoos/group__nanomsg.html#ga85a572429e2e35600ab8fb367e2b4ed1">nosMessageSend</a>(msg, task);</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    }</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* NOSCFG_FEATURE_MSGBOXES */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;  };</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;}</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* POSCFG_ENABLE_NANO */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif </span><span class="comment">/* POSCFG_FEATURE_MSGBOXES */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif </span><span class="comment">/* _PICOOS_MSG_HXX */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 6 2013 15:07:17 for picoos-oo by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Nov 10 2013 17:53:24 for picoos-oo by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
