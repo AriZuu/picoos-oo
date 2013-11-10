@@ -252,9 +252,7 @@ namespace nos {
 
 #if DOX!=0 || POSCFG_FEATURE_TIMERDESTROY != 0
 /**
- * Timer function.
  * Deletes a timer object and free its resources.
- * @param   tmr  handle to the timer object.
  * @note    ::NOSCFG_FEATURE_TIMER must be defined to 1
  *          to have timer support compiled in. @n
  *          ::POSCFG_FEATURE_TIMERDESTROY must be defined to 1

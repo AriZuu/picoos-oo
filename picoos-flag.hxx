@@ -249,7 +249,6 @@ namespace nos {
 #if DOX!=0 || POSCFG_FEATURE_FLAGDESTROY != 0
 /**
  * Frees an unused flag object again.
- * @param   flg  handle to the flag object.
  * @note    ::NOSCFG_FEATURE_FLAGS must be defined to 1
  *          to have flag support compiled in.@n
  *          ::POSCFG_FEATURE_FLAGDESTROY must be defined to 1

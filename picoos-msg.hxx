@@ -262,9 +262,9 @@ namespace nos {
  *          ::NOSCFG_FEATURE_MEMALLOC to 1.
  * @sa      nosMessageSend, nosMessageGet, nosMessageFree
  */
-    inline void* alloc()
+    inline void* alloc(UINT_t msgSize)
     {
-      msg = nosMessageAlloc();
+      msg = nosMessageAlloc(msgSize);
       return msg;
     }
 
@@ -272,7 +272,6 @@ namespace nos {
  * Frees a message buffer again.
  * Usually the receiving task would call this function after
  * it has processed a message to free the message buffer again.
- * @param   buf  Pointer to the message buffer that is no more used.
  * @note    ::NOSCFG_FEATURE_MSGBOXES must be defined to 1
  *          to have message box support compiled in.
  * @sa      nosMessageGet, nosMessageSend, nosMessageAlloc
@@ -285,10 +284,7 @@ namespace nos {
 
 /**
  * Sends a message to a task.
- * @param   buf  Pointer to the message to send.
- *               The message buffer must have been allocated by
- *               calling ::nosMessageAlloc before.
- * @param   taskhandle  handle to the task to send the message to.
+ * @param   task  handle to the task to send the message to.
  * @return  zero on success. When an error condition exist, a
  *          negative value is returned and the message buffer is freed.
  * @note    ::NOSCFG_FEATURE_MSGBOXES must be defined to 1

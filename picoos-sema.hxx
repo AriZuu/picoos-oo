@@ -273,7 +273,6 @@ namespace nos {
 #if DOX!=0 || POSCFG_FEATURE_SEMADESTROY != 0
 /**
  * Frees a no more needed semaphore object.
- * @param   sema  handle to the semaphore object.
  * @note    ::NOSCFG_FEATURE_SEMAPHORES must be defined to 1
  *          to have semaphore support compiled in.@n
  *          ::POSCFG_FEATURE_SEMADESTROY must be defined to 1

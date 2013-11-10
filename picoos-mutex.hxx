@@ -237,9 +237,7 @@ namespace nos {
 
 #if DOX!=0 || POSCFG_FEATURE_MUTEXDESTROY != 0
 /**
- * Mutex function.
  * Frees a no more needed mutex object.
- * @param   mutex  handle to the mutex object.
  * @note    ::NOSCFG_FEATURE_MUTEXES must be defined to 1
  *          to have mutex support compiled in.@n
  *          ::POSCFG_FEATURE_MUTEXDESTROY must be defined to 1
