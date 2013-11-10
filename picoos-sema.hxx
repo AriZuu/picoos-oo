@@ -209,7 +209,7 @@ namespace pos {
   };
 }
 
-#if POSCFG_ENABLE_NANO != 0
+#if DOX!=0 || POSCFG_ENABLE_NANO != 0
 
 namespace nos {
 
