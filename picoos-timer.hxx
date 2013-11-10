@@ -44,9 +44,10 @@ extern "C" {
 
 }
 
+#if (DOX!=0) || (POSCFG_FEATURE_TIMER != 0)
+
 namespace pos {
 
-#if (DOX!=0) || (POSCFG_FEATURE_TIMER != 0)
 /**
  * A timer object is a counting variable that is counted down by the
  * system timer interrupt tick rate. If the variable reaches zero,
@@ -187,11 +188,93 @@ namespace pos {
       return *this;
     };
 
-  private:
+  protected:
     POSTIMER_t handle;
   };
-
-#endif  /* POSCFG_FEATURE_TIMER */
 }
 
+#if POSCFG_ENABLE_NANO != 0
+
+namespace nos {
+
+/**
+ * Timer functions.
+ */
+  class Timer : public pos::Timer
+  {
+  public:
+
+/*
+ * Constructors.
+ */
+    inline Timer()
+    {
+    };
+
+    inline Timer(const Timer& other) : pos::Timer(other)
+    {
+    };
+
+    inline Timer(const POSTIMER_t other) : pos::Timer(other)
+    {
+    };
+
+#if DOX!=0 || NOSCFG_FEATURE_TIMER != 0
+/**
+ * Allocates a timer object. After a timer is allocated with this function,
+ * it must be set up with ::nosTimerSet and than started with ::nosTimerStart.
+ * @return  semaphore creation status. -1 is returned when the
+ *          semaphore could not be created.
+ * @param   name      Name of the new timer object to create. If the last
+ *                    character in the name is an asteriks (*), the operating
+ *                    system automatically assigns the timer an unique
+ *                    name (the registry feature must be enabled for this
+ *                    automatism). This parameter can be NULL if the nano
+ *                    layer registry feature is not used and will not be
+ *                    used in future.
+ * @note    ::NOSCFG_FEATURE_TIMER must be defined to 1
+ *          to have timer support compiled in. @n
+ *          You must use ::nosTimerDestroy to destroy the flag object again.@n
+ *          Even if the function posTimerDestroy would work also, it is
+ *          required to call ::nosTimerDestroy. Only this function removes
+ *          the flag object from the registry. @n
+ *          Dependent of your configuration, this function can
+ *          be defined as macro to decrease code size.
+ * @sa      nosTimerSet, nosTimerStart, nosTimerDestroy
+ */
+    inline VAR_t create(const char *name)
+    {
+      handle = nosTimerCreate(name);
+      return (handle == NULL) ? -1 : 0;
+    };
+
+    using pos::Timer::create;
+
+#if DOX!=0 || POSCFG_FEATURE_TIMERDESTROY != 0
+/**
+ * Timer function.
+ * Deletes a timer object and free its resources.
+ * @param   tmr  handle to the timer object.
+ * @note    ::NOSCFG_FEATURE_TIMER must be defined to 1
+ *          to have timer support compiled in. @n
+ *          ::POSCFG_FEATURE_TIMERDESTROY must be defined to 1
+ *          to have this function compiled in. @n
+ *          Dependent of your configuration, this function can
+ *          be defined as macro to decrease code size.
+ * @sa      nosTimerCreate
+ */
+    inline void destroy()
+    {
+      nosTimerDestroy(handle);
+      handle = (POSTIMER_t)0;
+    }
+
+#endif
+#endif /* NOSCFG_FEATURE_TIMER */
+
+  };
+}
+
+#endif /* POSCFG_ENABLE_NANO */
+#endif  /* POSCFG_FEATURE_TIMER */
 #endif /* _PICOOS_TIMER_HXX */
