@@ -44,9 +44,10 @@ extern "C" {
 
 }
 
+#if (DOX!=0) || (POSCFG_FEATURE_SEMAPHORES != 0)
+
 namespace pos {
 
-#if (DOX!=0) || (POSCFG_FEATURE_SEMAPHORES != 0)
 /**
  * Semaphores are basically used for task synchronization.
  * Task synchronization means that only a defined number of tasks can
@@ -206,8 +207,6 @@ namespace pos {
   protected:
     POSSEMA_t handle;
   };
-
-#endif /* POSCFG_FEATURE_SEMAPHORES  */
 }
 
 #if POSCFG_ENABLE_NANO != 0
@@ -296,4 +295,5 @@ namespace nos {
 }
 
 #endif /* POSCFG_ENABLE_NANO */
+#endif /* POSCFG_FEATURE_SEMAPHORES  */
 #endif /* _PICOOS_SEMA_HXX */

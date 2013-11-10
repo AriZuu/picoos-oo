@@ -44,9 +44,10 @@ extern "C" {
 
 }
 
+#if (DOX!=0) || (POSCFG_FEATURE_FLAGS != 0)
+
 namespace pos {
 
-#if (DOX!=0) || (POSCFG_FEATURE_FLAGS != 0)
 /**
  * Flags are one-bit semaphores. They can be used to simulate events.
  * A thread can simultaneousely wait for multiple flags to be set,
@@ -181,11 +182,9 @@ namespace pos {
       return *this;
     };
 
-  private:
+  protected:
     POSFLAG_t handle;
   };
-
-#endif  /* POSCFG_FEATURE_FLAGS */
 }
 
 #if POSCFG_ENABLE_NANO != 0
@@ -272,4 +271,5 @@ namespace nos {
 }
 
 #endif /* POSCFG_ENABLE_NANO */
+#endif  /* POSCFG_FEATURE_FLAGS */
 #endif /* _PICOOS_FLAG_HXX */
