@@ -44,9 +44,10 @@ extern "C" {
 
 }
 
+#if (DOX!=0) || (POSCFG_FEATURE_MSGBOXES != 0)
+
 namespace pos {
 
-#if (DOX!=0) || (POSCFG_FEATURE_MSGBOXES != 0)
 /**
  * Message boxes are a mechanism that is used for inter-process or,
  * in the case of pico]OS, inter-task communication. All tasks
@@ -73,12 +74,10 @@ namespace pos {
 /**
  * Construct message when ::POSCFG_MSG_MEMORY is 1.
  */
-#if (DOX!=0) || (POSCFG_MSG_MEMORY != 0)
     inline Message()
     {
       msg = NULL;
     };
-#endif
 
 #if (DOX!=0) || (POSCFG_MSG_MEMORY == 0)
     /**
@@ -221,8 +220,91 @@ namespace pos {
   private:
     void* msg;
   };
-
-#endif  /* POSCFG_FEATURE_MSGBOXES */
 }
 
+#if POSCFG_ENABLE_NANO != 0
+
+namespace nos {
+
+/**
+ * Messagephore functions.
+ */
+  class Message : public pos::Message
+  {
+  public:
+
+/*
+ * Constructors.
+ */
+    inline Message()
+    {
+    };
+
+#if DOX!=0 || NOSCFG_FEATURE_MSGBOXES != 0
+
+/**
+ * Allocates a new message buffer. To increase the execution speed,
+ * it is recommended to set ::POSCFG_MSG_MEMORY to 1. Otherwise,
+ * ::nosMessageAlloc will need to call ::nosMemAlloc to allocate memory
+ * (and this is possibly slower than the pico]OS internal message allocator).
+ * @n Usually the sending task would allocate a new message buffer, fill
+ * in its data and send it via ::nosMessageSend to the receiving task.
+ * The receiving task is responsible for freeing the message buffer again.
+ * @param   msgSize   size of the requested message buffer in bytes.
+ * @return  the pointer to the new buffer. NULL is returned if the
+ *          system is low on memory or the requested msgSize is larger
+ *          than ::POSCFG_MSG_BUFSIZE (only if ::POSCFG_MSG_MEMORY is
+ *          set to 1).
+ * @note    ::NOSCFG_FEATURE_MSGBOXES must be defined to 1
+ *          to have message box support compiled in.@n
+ *          If ::POSCFG_MSG_MEMORY is set to 0, you also need to
+ *          enable the nano layer memory manager by setting
+ *          ::NOSCFG_FEATURE_MEMALLOC to 1.
+ * @sa      nosMessageSend, nosMessageGet, nosMessageFree
+ */
+    inline void* alloc()
+    {
+      msg = nosMessageAlloc();
+      return msg;
+    }
+
+/**
+ * Frees a message buffer again.
+ * Usually the receiving task would call this function after
+ * it has processed a message to free the message buffer again.
+ * @param   buf  Pointer to the message buffer that is no more used.
+ * @note    ::NOSCFG_FEATURE_MSGBOXES must be defined to 1
+ *          to have message box support compiled in.
+ * @sa      nosMessageGet, nosMessageSend, nosMessageAlloc
+ */
+    inline void free()
+    {
+      nosMessageFree(msg);
+      msg = NULL;
+    }
+
+/**
+ * Sends a message to a task.
+ * @param   buf  Pointer to the message to send.
+ *               The message buffer must have been allocated by
+ *               calling ::nosMessageAlloc before.
+ * @param   taskhandle  handle to the task to send the message to.
+ * @return  zero on success. When an error condition exist, a
+ *          negative value is returned and the message buffer is freed.
+ * @note    ::NOSCFG_FEATURE_MSGBOXES must be defined to 1
+ *          to have message box support compiled in.
+ * @sa      nosMessageAlloc, nosMessageGet
+ */
+    inline VAR_t send(const Task& task)
+    {
+      return nosMessageSend(msg, task);
+    }
+
+#endif /* NOSCFG_FEATURE_MSGBOXES */
+
+  };
+}
+
+#endif /* POSCFG_ENABLE_NANO */
+#endif /* POSCFG_FEATURE_MSGBOXES */
 #endif /* _PICOOS_MSG_HXX */
