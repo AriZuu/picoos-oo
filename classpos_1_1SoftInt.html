@@ -76,42 +76,6 @@ All software interrupts, that are triggered by a call to <a class="el" href="cla
 A software interrupt runs at interrupt level, that means with interrupts disabled (pico]OS calls <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__lock.html#ga6fc045026870566d991d6bb7ab7093ac">POS_SCHED_LOCK</a> before executing the software interrupt handler). The execution of software interrupt handlers can not be inhibited by setting the <a class="el" href="classpos_1_1Task.html#a03cf2490cb98935b577e4e9aa72cb14b">pos::Task::schedLock</a> flag. <br />
 Note that software interrupts need additional space on the processors call stack. Make sure to have space for at least 5 additional subroutine calls, plus the calls you will make in the ISR handler routine. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a089de0bf01125f341e43d8fe1584941e"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/picoos_8h.html#acd71b9176e3754a87ca57fc06931e0de">VAR_t</a> pos::SoftInt::delHandler </td>
-          <td>(</td>
-          <td class="paramtype"><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/picoos_8h.html#a560fb7bf8dc2f316e50c0b8d8196d26c">UVAR_t</a>&#160;</td>
-          <td class="paramname"><em>intno</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Deletes a software interrupt handler function, that was set with <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__sint.html#ga41b1c020380c993790af333debef8806">posSoftIntSetHandler</a> before. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">intno</td><td>number of the interrupt to rise. Must be in the range of 0 to <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__coreset.html#ga5707b2bbf1e70ee1ebc1486cc17674b6">POSCFG_SOFTINTERRUPTS</a> - 1. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__feature.html#ga3e724cc9aebb79188643579c2e52d08c">POSCFG_FEATURE_SOFTINTS</a> must be defined to 1 to have software interrupt support compiled in.<br />
- <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__feature.html#gaa10ba35047f70498c9a7dfad0d21cb01">POSCFG_FEATURE_SOFTINTDEL</a> must be defined to 1 to have this function compiled in. </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>zero on success. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__sint.html#ga6a546edb3630346bc23d3b154c254bff">posSoftIntDelHandler</a>, <a class="el" href="classpos_1_1SoftInt.html#a2660f9b595f9a8c3d0e91b83b7462843">setHandler</a>, <a class="el" href="classpos_1_1SoftInt.html#af6b5224f53eb1448d4e01cd8ab4e81c0">raise</a> </dd></dl>
-
-<p>References <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__sint.html#ga6a546edb3630346bc23d3b154c254bff">posSoftIntDelHandler()</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="af6b5224f53eb1448d4e01cd8ab4e81c0"></a>
 <div class="memitem">
 <div class="memproto">
@@ -205,10 +169,46 @@ If a software interrupt is triggered from inside the pico]OS scope, usually from
 
 </div>
 </div>
+<a class="anchor" id="a089de0bf01125f341e43d8fe1584941e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/picoos_8h.html#acd71b9176e3754a87ca57fc06931e0de">VAR_t</a> pos::SoftInt::delHandler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/picoos_8h.html#a560fb7bf8dc2f316e50c0b8d8196d26c">UVAR_t</a>&#160;</td>
+          <td class="paramname"><em>intno</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Deletes a software interrupt handler function, that was set with <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__sint.html#ga41b1c020380c993790af333debef8806">posSoftIntSetHandler</a> before. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">intno</td><td>number of the interrupt to rise. Must be in the range of 0 to <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__coreset.html#ga5707b2bbf1e70ee1ebc1486cc17674b6">POSCFG_SOFTINTERRUPTS</a> - 1. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__feature.html#ga3e724cc9aebb79188643579c2e52d08c">POSCFG_FEATURE_SOFTINTS</a> must be defined to 1 to have software interrupt support compiled in.<br />
+ <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__feature.html#gaa10ba35047f70498c9a7dfad0d21cb01">POSCFG_FEATURE_SOFTINTDEL</a> must be defined to 1 to have this function compiled in. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>zero on success. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__sint.html#ga6a546edb3630346bc23d3b154c254bff">posSoftIntDelHandler</a>, <a class="el" href="classpos_1_1SoftInt.html#a2660f9b595f9a8c3d0e91b83b7462843">setHandler</a>, <a class="el" href="classpos_1_1SoftInt.html#af6b5224f53eb1448d4e01cd8ab4e81c0">raise</a> </dd></dl>
+
+<p>References <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__sint.html#ga6a546edb3630346bc23d3b154c254bff">posSoftIntDelHandler()</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 11 2015 16:30:05 for picoos-oo by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 26 2015 20:30:57 for picoos-oo by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

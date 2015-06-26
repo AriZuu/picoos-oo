@@ -112,63 +112,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab98cc4c68f3816a1e4e8a95116215f76"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void pos::Timer::destroy </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Deletes a timer object and free its resources. </p><dl class="section note"><dt>Note</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__feature.html#ga28f0509d7ed461a07729f8e9721c7360">POSCFG_FEATURE_TIMER</a> must be defined to 1 to have timer support compiled in. <br />
- <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__feature.html#gadaf46238ba00d674b0f973a7e7cec364">POSCFG_FEATURE_TIMERDESTROY</a> must be defined to 1 to have this function compiled in. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__timer.html#ga056c2abe6cef2ffd58f42d4458303b36">posTimerDestroy</a>, <a class="el" href="classpos_1_1Timer.html#a50c063616245740503a4401ecd8818b8">create</a> </dd></dl>
-
-<p>References <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__timer.html#ga056c2abe6cef2ffd58f42d4458303b36">posTimerDestroy()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="afd6881b96b6f52e3d26347e702397563"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/picoos_8h.html#acd71b9176e3754a87ca57fc06931e0de">VAR_t</a> pos::Timer::fired </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>The function is used to test if a timer has fired. </p><dl class="section return"><dt>Returns</dt><dd>1 when the timer has fired, otherwise 0. A negative value is returned on error. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__feature.html#ga28f0509d7ed461a07729f8e9721c7360">POSCFG_FEATURE_TIMER</a> must be defined to 1 to have timer support compiled in. <br />
- <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__feature.html#ga39cf61b4180b9bcdfce8cc8b4042fca4">POSCFG_FEATURE_TIMERFIRED</a> must be defined to 1 to have this function compiled in. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__timer.html#ga2b11ac3856c65294d9c54d682e5066e7">posTimerFired</a>, <a class="el" href="classpos_1_1Timer.html#a50c063616245740503a4401ecd8818b8">create</a>, <a class="el" href="classpos_1_1Timer.html#a26c07144e4e854bde0e31062fceca947">set</a>, <a class="el" href="classpos_1_1Timer.html#a63e4dee8b7fd0653175289c41f4e4309">start</a> </dd></dl>
-
-<p>References <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__timer.html#ga2b11ac3856c65294d9c54d682e5066e7">posTimerFired()</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a26c07144e4e854bde0e31062fceca947"></a>
 <div class="memitem">
 <div class="memproto">
@@ -278,10 +221,67 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ab98cc4c68f3816a1e4e8a95116215f76"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pos::Timer::destroy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Deletes a timer object and free its resources. </p><dl class="section note"><dt>Note</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__feature.html#ga28f0509d7ed461a07729f8e9721c7360">POSCFG_FEATURE_TIMER</a> must be defined to 1 to have timer support compiled in. <br />
+ <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__feature.html#gadaf46238ba00d674b0f973a7e7cec364">POSCFG_FEATURE_TIMERDESTROY</a> must be defined to 1 to have this function compiled in. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__timer.html#ga056c2abe6cef2ffd58f42d4458303b36">posTimerDestroy</a>, <a class="el" href="classpos_1_1Timer.html#a50c063616245740503a4401ecd8818b8">create</a> </dd></dl>
+
+<p>References <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__timer.html#ga056c2abe6cef2ffd58f42d4458303b36">posTimerDestroy()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afd6881b96b6f52e3d26347e702397563"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/picoos_8h.html#acd71b9176e3754a87ca57fc06931e0de">VAR_t</a> pos::Timer::fired </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The function is used to test if a timer has fired. </p><dl class="section return"><dt>Returns</dt><dd>1 when the timer has fired, otherwise 0. A negative value is returned on error. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__feature.html#ga28f0509d7ed461a07729f8e9721c7360">POSCFG_FEATURE_TIMER</a> must be defined to 1 to have timer support compiled in. <br />
+ <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__feature.html#ga39cf61b4180b9bcdfce8cc8b4042fca4">POSCFG_FEATURE_TIMERFIRED</a> must be defined to 1 to have this function compiled in. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__timer.html#ga2b11ac3856c65294d9c54d682e5066e7">posTimerFired</a>, <a class="el" href="classpos_1_1Timer.html#a50c063616245740503a4401ecd8818b8">create</a>, <a class="el" href="classpos_1_1Timer.html#a26c07144e4e854bde0e31062fceca947">set</a>, <a class="el" href="classpos_1_1Timer.html#a63e4dee8b7fd0653175289c41f4e4309">start</a> </dd></dl>
+
+<p>References <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__timer.html#ga2b11ac3856c65294d9c54d682e5066e7">posTimerFired()</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 11 2015 16:30:05 for picoos-oo by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 26 2015 20:30:57 for picoos-oo by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

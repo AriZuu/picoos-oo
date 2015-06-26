@@ -138,41 +138,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1bf176f482af0465bc0291efea114287"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/picoos_8h.html#acd71b9176e3754a87ca57fc06931e0de">VAR_t</a> pos::Flag::get </td>
-          <td>(</td>
-          <td class="paramtype"><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/picoos_8h.html#a560fb7bf8dc2f316e50c0b8d8196d26c">UVAR_t</a>&#160;</td>
-          <td class="paramname"><em>mode</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Pends on a flag object and waits until one of the flags in the flag object is set. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">mode</td><td>can be POSFLAG_MODE_GETSINGLE or POSFLAG_MODE_GETMASK. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the number of the next flag that is set when mode is set to POSFLAG_MODE_GETSINGLE. When mode is set to POSFLAG_MODE_GETMASK, a bit mask with all set flags is returned. A negative value is returned on error. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__feature.html#ga8d54b771ce343ebcd0ba727b9b7f2848">POSCFG_FEATURE_FLAGS</a> must be defined to 1 to have flag support compiled in. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__flag.html#ga5c90ac9c3c3309cc753d24270c5f9bd0">posFlagGet</a>, <a class="el" href="classpos_1_1Flag.html#a42e8b2fe7d4ce664999560ffc3a0a2eb">create</a>, <a class="el" href="classpos_1_1Flag.html#ad8d2ca9b100e768029aa17d41b56e319">set</a>, <a class="el" href="classpos_1_1Flag.html#a45637016f09f9870f101fababff5b9b3">wait</a> </dd></dl>
-
-<p>References <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__flag.html#ga5c90ac9c3c3309cc753d24270c5f9bd0">posFlagGet()</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="ad8d2ca9b100e768029aa17d41b56e319"></a>
 <div class="memitem">
 <div class="memproto">
@@ -205,6 +170,41 @@ Public Member Functions</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__flag.html#ga9cecb429093d64c6bff739afe1211b37">posFlagSet</a>, <a class="el" href="classpos_1_1Flag.html#a42e8b2fe7d4ce664999560ffc3a0a2eb">create</a>, <a class="el" href="classpos_1_1Flag.html#a1bf176f482af0465bc0291efea114287">get</a>, <a class="el" href="classpos_1_1Flag.html#a45637016f09f9870f101fababff5b9b3">wait</a> </dd></dl>
 
 <p>References <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__flag.html#ga9cecb429093d64c6bff739afe1211b37">posFlagSet()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1bf176f482af0465bc0291efea114287"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/picoos_8h.html#acd71b9176e3754a87ca57fc06931e0de">VAR_t</a> pos::Flag::get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/picoos_8h.html#a560fb7bf8dc2f316e50c0b8d8196d26c">UVAR_t</a>&#160;</td>
+          <td class="paramname"><em>mode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Pends on a flag object and waits until one of the flags in the flag object is set. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>can be POSFLAG_MODE_GETSINGLE or POSFLAG_MODE_GETMASK. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the number of the next flag that is set when mode is set to POSFLAG_MODE_GETSINGLE. When mode is set to POSFLAG_MODE_GETMASK, a bit mask with all set flags is returned. A negative value is returned on error. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__feature.html#ga8d54b771ce343ebcd0ba727b9b7f2848">POSCFG_FEATURE_FLAGS</a> must be defined to 1 to have flag support compiled in. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__flag.html#ga5c90ac9c3c3309cc753d24270c5f9bd0">posFlagGet</a>, <a class="el" href="classpos_1_1Flag.html#a42e8b2fe7d4ce664999560ffc3a0a2eb">create</a>, <a class="el" href="classpos_1_1Flag.html#ad8d2ca9b100e768029aa17d41b56e319">set</a>, <a class="el" href="classpos_1_1Flag.html#a45637016f09f9870f101fababff5b9b3">wait</a> </dd></dl>
+
+<p>References <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__flag.html#ga5c90ac9c3c3309cc753d24270c5f9bd0">posFlagGet()</a>.</p>
 
 </div>
 </div>
@@ -247,7 +247,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 11 2015 16:30:05 for picoos-oo by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 26 2015 20:30:57 for picoos-oo by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

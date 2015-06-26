@@ -138,34 +138,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aa60a0d2021a388ce769563570cad54d7"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/picoos_8h.html#acd71b9176e3754a87ca57fc06931e0de">VAR_t</a> pos::Mutex::lock </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>This function locks a code section so that only one task can execute the code at a time. If an other task already has the lock, the task requesting the lock will be blocked until the mutex is unlocked again. Note that a <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__mutex.html#ga534877f9b8c7805065ef98f6e1ca4657">posMutexLock</a> appears always in a pair with <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__mutex.html#ga1daf8189d3340b02b04d9235c1f79a37">posMutexUnlock</a>. </p><dl class="section return"><dt>Returns</dt><dd>zero on success. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__feature.html#ga5c7027f8fb227c83c1493a6aaf4e1216">POSCFG_FEATURE_MUTEXES</a> must be defined to 1 to have mutex support compiled in. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__mutex.html#ga534877f9b8c7805065ef98f6e1ca4657">posMutexLock</a>, <a class="el" href="classpos_1_1Mutex.html#a5e5dd6e12ec0d1249f07b1c932680c6a">tryLock</a>, <a class="el" href="classpos_1_1Mutex.html#a50eab1edbbd1c26840baafc2c49441ea">unlock</a>, <a class="el" href="classpos_1_1Mutex.html#abaf3bd43d37f67bac750cc285593b645">create</a> </dd></dl>
-
-<p>References <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__mutex.html#ga534877f9b8c7805065ef98f6e1ca4657">posMutexLock()</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a5e5dd6e12ec0d1249f07b1c932680c6a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -192,6 +164,34 @@ Public Member Functions</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__mutex.html#gacbe06f7bf9f5f650ba139b3625c967dd">posMutexTryLock</a>, <a class="el" href="classpos_1_1Mutex.html#aa60a0d2021a388ce769563570cad54d7">lock</a>, <a class="el" href="classpos_1_1Mutex.html#a50eab1edbbd1c26840baafc2c49441ea">unlock</a>, <a class="el" href="classpos_1_1Mutex.html#abaf3bd43d37f67bac750cc285593b645">create</a> </dd></dl>
 
 <p>References <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__mutex.html#gacbe06f7bf9f5f650ba139b3625c967dd">posMutexTryLock()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa60a0d2021a388ce769563570cad54d7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/picoos_8h.html#acd71b9176e3754a87ca57fc06931e0de">VAR_t</a> pos::Mutex::lock </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This function locks a code section so that only one task can execute the code at a time. If an other task already has the lock, the task requesting the lock will be blocked until the mutex is unlocked again. Note that a <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__mutex.html#ga534877f9b8c7805065ef98f6e1ca4657">posMutexLock</a> appears always in a pair with <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__mutex.html#ga1daf8189d3340b02b04d9235c1f79a37">posMutexUnlock</a>. </p><dl class="section return"><dt>Returns</dt><dd>zero on success. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__feature.html#ga5c7027f8fb227c83c1493a6aaf4e1216">POSCFG_FEATURE_MUTEXES</a> must be defined to 1 to have mutex support compiled in. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__mutex.html#ga534877f9b8c7805065ef98f6e1ca4657">posMutexLock</a>, <a class="el" href="classpos_1_1Mutex.html#a5e5dd6e12ec0d1249f07b1c932680c6a">tryLock</a>, <a class="el" href="classpos_1_1Mutex.html#a50eab1edbbd1c26840baafc2c49441ea">unlock</a>, <a class="el" href="classpos_1_1Mutex.html#abaf3bd43d37f67bac750cc285593b645">create</a> </dd></dl>
+
+<p>References <a class="elRef" doxygen="/usr/home/ari/my-development/embedded/picoos/doc/picoos.tag:../picoos/" href="../picoos/group__mutex.html#ga534877f9b8c7805065ef98f6e1ca4657">posMutexLock()</a>.</p>
 
 </div>
 </div>
@@ -226,7 +226,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 11 2015 16:30:05 for picoos-oo by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 26 2015 20:30:57 for picoos-oo by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
